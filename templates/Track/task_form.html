@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Нове завдання </h1>
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Назва</label>
+        {{ form.title.errors }}
+        {{ form.title }}
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Опис</label>
+        {{ form.description.errors }}
+        {{ form.description }}
+    </div>
+
+    <div class="mb-3">
+        <label for="status" class="form-label">Статус</label>
+        {{ form.status.errors }}
+        {{ form.status }}
+    </div>
+
+    <div class="mb-3">
+        <label for="priority" class="form-label">Приоритет</label>
+        {{ form.priority.errors }}
+        {{ form.priority }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Створити</button>
+</form>
+</div>
+{% endblock %}

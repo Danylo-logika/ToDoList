@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Трекер завдань</h1>
-
+<a href="{% url 'task_create' %}" class="btn btn-primary info mb-3" tabindex="-1" role="button" aria-disabled="true"><i class="ti ti-circle-plus"></i>Додати завдання</a>
 <div class="list-group">
     {% for task in task_list %}
     <a href="{% url 'task_detail' task.id %}" class="list-group-item list-group-item-action">{{ task.title }} - {{task.status}}</a>
