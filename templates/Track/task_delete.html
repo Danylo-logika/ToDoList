@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'task_delete' task.id %}" method="post" onsubmit="return confirm('Видалити завдання?');">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Видалити</button>
+</form>
+{% endblock %}

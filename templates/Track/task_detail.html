@@ -2,4 +2,6 @@
 {% block content %}
 <h1>Завдання {{task.title}}</h1>
 <p>Опис {{task.description}}</p>
+<p>Статус: {{ task.get_status_display }}</p>
+<p>Пріоритет: {{ task.get_priority_display }}</p>
 {% endblock  %}

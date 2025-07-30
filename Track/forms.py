@@ -8,7 +8,7 @@ class TaskForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': "Ваше ім'я"
+                'placeholder': "Назва завдання"
             }),
             'description': forms.TextInput(attrs={
                 'class': 'form-control',

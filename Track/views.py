@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.urls import reverse_lazy
 
 from Track.forms import TaskForm
@@ -22,3 +22,10 @@ class TaskCreateView(CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'Track/task_delete.html'
+    success_url = reverse_lazy('task_list')
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
