@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from Track.forms import TaskForm
 from Track.models import Task
@@ -23,7 +24,7 @@ class TaskCreateView(CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = 'Track/task_delete.html'
     success_url = reverse_lazy('task_list')

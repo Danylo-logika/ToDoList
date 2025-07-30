@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Track',
+    'auth_system',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = 'task_list'
+LOGIN_REDIRECT_URL = '/login/'
