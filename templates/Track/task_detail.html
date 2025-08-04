@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Завдання {{task.title}}</h1>
-<p>Опис {{task.description}}</p>
-<p>Статус: {{ task.get_status_display }}</p>
-<p>Пріоритет: {{ task.get_priority_display }}</p>
-{% endblock  %}
+<h1>Редагування завдання "{{ form.instance.title }}"</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <p><strong>Назва:</strong> {{ form.title }}</p>
+    <p><strong>Опис:</strong> {{ form.description }}</p>
+    <p><strong>Статус:</strong> {{ form.status }}</p>
+    <p><strong>Пріоритет:</strong> {{ form.priority }}</p>
+
+    <button type="submit" class="btn btn-success">Зберегти</button>
+    <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад</a>
+</form>
+{% endblock %}

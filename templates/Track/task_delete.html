@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="{% url 'task_delete' task.id %}" method="post" onsubmit="return confirm('Видалити завдання?');">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Видалити</button>
-</form>
+<div class="delete-container">
+    <h2>Видалити завдання: "{{ task.title }}"?</h2>
+    <p class="warning-text">Це рішення є <strong>незворотним</strong>. Будь ласка, підтвердіть видалення.</p>
+
+    <form action="{% url 'task_delete' task.id %}" method="post" onsubmit="return confirmDelete();">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-delete">Видалити</button>
+        <a href="{% url 'task_list' %}" class="btn btn-secondary btn-cancel">Скасувати</a>
+    </form>
+</div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Ви впевнені, що хочете видалити це завдання?');
+    }
+</script>
 {% endblock %}
