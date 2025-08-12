@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -7,15 +8,18 @@ from django.http import HttpResponseForbidden
 from Track.forms import TaskForm
 from Track.models import Task
 # Create your views here.
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = "Track/task_list.html"
+    def get_queryset(self):
+        queryset = Task.objects.filter(created_by = self.request.user)
+        return queryset
 
 #class TaskDetailView(DetailView):
     #model = Task
     #template_name="Track/task_detail.html"
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     template_name = 'Track/task_form.html'
     success_url = reverse_lazy('task_list')
